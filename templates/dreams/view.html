@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="new_container">
+    <div class="header" style="background-color: '{{ dream.color }}">
+        <h1 class="title">{{ dream.title }}</h1>
+        <p class="date">{{ dream.date_dream }}</p>
+    </div>
+    <ul class="keywords">
+        {% for keyword in dream.keywords %}
+            <li class="key">{{ keyword }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="content">
+        {{ dream.contents }}
+    </div>
+
+    <div class="footer">
+        <div class="left">
+            <div class="color" style="background-color: '{{ dream.color }}'"></div>
+            <span class="username">{{ dream.name }}</span>
+        </div>
+
+        <div class="right">
+            <p class="read">{{ dream.read }}</p>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <a href="" class="edit">수정하기</a>
+        <a href="" class="delete">삭제하기</a>
+    </div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="new_container">
+    <h1 class="title">DREAM</h1>
+    <div class="box">
+        <ul class="label-box">
+            <li class="label item1">제목</li>
+            <li class="label item2">키워드</li>
+            <li class="label item3">내용</li>
+        </ul>
+        <form method="post" action="" class="form">
+            {% csrf_token %}
+            {% include 'form_is_error' %}
+            <div class="put-lines">
+                <input type="text" name="title" id="demo-name" value="" placeholder="제목" />
+                <input type="date"  name="date_dream" id="demo-date" value="" placeholder="꿈날" />
+                <ul class="keyword">
+                    <li class="keyitem key-add"><a href="">+추가</a></li>
+                </ul>
+                <div class="col-12" >
+                    <textarea name="contents" id="contents" placeholder="Enter Your Dreams story.." rows="5" ></textarea>
+                </div>
+                <button type="submit">꿈나라로 보내기</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
