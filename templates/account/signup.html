@@ -3,7 +3,7 @@
 <div class="signup-container">
     <div class="signup-wrap">
         <a href="" ><h1>회원가입</h1></a>
-        <form method="post" enctype='multipart/form-data' class="signup-form" action="{% url 'common:signup' %}">
+        <form method="post" enctype='multipart/form-data' class="signup-form" action="{% url 'account:signup' %}">
             {% csrf_token %}
             {% include "form_errors.html" %}
             <div class="sign-info">
@@ -22,8 +22,8 @@
                 <span class="signup-item pw-check">PW확인</span>
                 <input type="password" name="password2" class="input-pwchk" placeholder="비밀번호를 한번 더 확인합니다." value="{{ form.password2.value|default_if_none:'' }}">
             </div>
-            <div class="signup-item usercolor-img" >
-                <input type="text" name="usercolor" class="input-usercolor" placeholder="프로필 색깔을 정해주세요" value="{{ form.usercolor.value|default_if_none:'' }}">
+            <div class="signup-item usercolor" >
+                <input type="color" name="usercolor" class="input-usercolor" placeholder="프로필 색깔을 정해주세요" value="{{ form.usercolor.value|default_if_none:'' }}">
             </div>
             <button type="submit" class="submit">가입하기</button>
         </form>

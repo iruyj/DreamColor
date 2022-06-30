@@ -5,7 +5,7 @@ from account.models import CustomUser
 from dreamColor import settings
 
 
-class DreamModel(models):
+class DreamModel(models.Model):
     title = models.CharField(verbose_name='제목' ,max_length=30),
     date_dream = models.DateField(verbose_name='꿈꾼날짜'),
     created = models.DateTimeField(verbose_name='생성시각',auto_now_add=True),

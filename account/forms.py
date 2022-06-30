@@ -9,3 +9,9 @@ class UserForm(UserCreationForm):   # 장고의 UserCreationForm 클래스 상�
     class Meta:
         model = CustomUser
         fields = ("username", "nickname", "password1", "password2", "usercolor")
+
+class LoginForm(UserCreationForm):   # 장고의 UserCreationForm 클래스 상속
+
+    class Meta:
+        model = CustomUser
+        fields = ("username","password")

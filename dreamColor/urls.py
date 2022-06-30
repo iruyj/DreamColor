@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from dreams import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('dream/', include('dreams.urls')),
-    path('main/',include('dreams.urls')),
+    path('',views.mainPage, name='main'),
 ]
