@@ -7,4 +7,5 @@ app_name = 'dream'
 
 urlpatterns = [
     path('create', views.createDream, name='create' ),
+    path('', views.mainPage, name='main'),
 ]
