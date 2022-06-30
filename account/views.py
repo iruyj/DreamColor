@@ -17,7 +17,7 @@ def signup(request):
             isUser = authenticate(username=userid, password=pw)
             # 자동으로 로그인하기
             print('로그인됨')
-            login(request,isUser)
+            auth_login(request,isUser)
             return redirect('/')
     else:
         form = UserForm()
@@ -39,4 +39,5 @@ def login(request):
         return render(request, 'account/login.html',{'form':form,'state':'true'})
 
 def logout(request):
-    return None
+    logout(request)
+    return redirect('/')
