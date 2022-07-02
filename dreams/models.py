@@ -4,7 +4,7 @@ from django.db import models
 import account.models
 
 
-class DreamsDreammodel(models.Model):
+class DreamModel(models.Model):
     title = models.CharField(max_length=30)
     date_dream = models.DateField()
     created = models.DateTimeField()
