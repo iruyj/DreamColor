@@ -41,3 +41,6 @@ def login(request):
 def logout(request):
     logout(request)
     return redirect('/')
+
+def mypage(request):
+    return render(request, 'account/mypage.html')
