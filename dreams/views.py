@@ -3,15 +3,15 @@ import datetime
 from django.shortcuts import render
 
 # Create your views here.
-# from dreams.forms import DreamForm
+from dreams.forms import DreamForm
 
 
 def createDream(request):
-    # if request.method == 'POST':
-    #     form = DreamForm(request.POST)
-    #     if form.is_valid():
-    #         dream = form.save(commit=False)
-    #         dream.created = datetime.datetime.now()
+    if request.method == 'POST':
+        form = DreamForm(request.POST)
+        if form.is_valid():
+            dream = form.save(commit=False)
+            dream.created = datetime.datetime.now()
 
     return render(request,'dreams/new.html')
 
