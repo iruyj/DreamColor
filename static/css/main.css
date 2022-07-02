@@ -1,0 +1,18 @@
+.keyword-div{
+    width: 500px;
+    margin-left: 150px;
+    text-align: center;
+}
+.main-back{
+    background: url("/static/img/main_back.png") no-repeat;
+    background-size: contain;
+    width: auto;
+    height: 1000px;
+}
+.main-item{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -130%);
+    text-align: center;
+}

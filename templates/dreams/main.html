@@ -1,14 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <div class="container">
-            <div class="text-danger">키워드를 입력하세요.</div>
-            <a href="{% url 'account:login' %}">로그인</a>
-            <a href="{% url 'account:signup' %}">회원가입</a>
-        </div>
-
-        <p></p>
-        <button>글 작성하기</button>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark bg-opacity-75">
+            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item keyword-div"><a href="{% url 'dream:search' %}" class="nav-link bg-light"><div class="text-danger">키워드를 검색해보세요!</div></a></li>
+                </ul>
+            </div>
+            <div class="navbar-nav mt-mb-0" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">로그인</a></li>
+                    <li class="nav-item"><a href="{% url 'account:signup' %}" class="nav-link">회원가입</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="main-back" style="position: relative">
+            <div class="main-item">
+                <p class="text-light display-6 fw-bold" style="margin-bottom:60px">오늘의 꿈이야기를 작성해보세요</p>
+                <button class="btn btn-light" style=""><a href="{% url 'dream:create' %}" class="fw-bold text-dark text-decoration-none">글 작성하기</a></button>
+            </div>
     </div>
+
 
 {% endblock %}
