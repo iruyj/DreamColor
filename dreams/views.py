@@ -23,3 +23,6 @@ def viewDream(request):
 
 def mainPage(request):
     return render(request, 'dreams/main.html')
+
+def findKey(request):
+    return render(request, 'dreams/search.html')
