@@ -22,7 +22,9 @@ def viewDream(request):
     return render(request,'dreams/view.html',{'dream':dream, 'user':user})
 
 def mainPage(request):
-    return render(request, 'dreams/main.html')
+    dream_list = {'title': '추락하는 꿈', 'date_dream': datetime.date, 'bg': '#F2C4DA', 'contents': '내용ㅇㅇㅇ'
+        , 'user': 'ㅇㄹㅇㄴ', 'read': 21}
+    return render(request, 'dreams/main.html',{'dream':dream_list})
 
 def findKey(request):
     return render(request, 'dreams/search.html')
