@@ -10,15 +10,16 @@
         </ul>
         <form method="post" action="" class="form">
             {% csrf_token %}
-            {% include 'form_is_error' %}
+            {% include 'form_errors.html' %}
             <div class="put-lines">
                 <input type="text" name="title" id="demo-name" value="" placeholder="제목" />
                 <input type="date"  name="date_dream" id="demo-date" value="" placeholder="꿈날" />
-                <ul class="keyword">
-                    <li class="keyitem key-add"><a href="">+추가</a></li>
-                </ul>
                 <div class="col-12" >
                     <textarea name="contents" id="contents" placeholder="Enter Your Dreams story.." rows="5" ></textarea>
+                </div>
+
+                <div class="side-color">
+                    <input type="color" name="color" id="color-selection">
                 </div>
                 <button type="submit">꿈나라로 보내기</button>
             </div>
