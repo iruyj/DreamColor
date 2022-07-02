@@ -3,7 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 from account.models import CustomUser
 
-
 class UserForm(UserCreationForm):   # 장고의 UserCreationForm 클래스 상속
 
     class Meta:

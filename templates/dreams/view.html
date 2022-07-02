@@ -5,11 +5,6 @@
         <h1 class="title">{{ dream.title }}</h1>
         <p class="date">{{ dream.date_dream }}</p>
     </div>
-    <ul class="keywords">
-        {% for keyword in dream.keywords %}
-            <li class="key">{{ keyword }}</li>
-        {% endfor %}
-    </ul>
 
     <div class="content">
         {{ dream.contents }}
@@ -26,10 +21,12 @@
         </div>
     </div>
 
-    <div class="buttons">
-        <a href="" class="edit">수정하기</a>
-        <a href="" class="delete">삭제하기</a>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="buttons">
+            <a href="" class="edit">수정하기</a>
+            <a href="" class="delete">삭제하기</a>
+        </div>
+    {% endif %}
 
 
 </div>

@@ -20,6 +20,15 @@
                 <p class="text-light display-6 fw-bold" style="margin-bottom:60px">오늘의 꿈이야기를 작성해보세요</p>
                 <button class="btn btn-light" style=""><a href="{% url 'dream:create' %}" class="fw-bold text-dark text-decoration-none">글 작성하기</a></button>
             </div>
+    <div class="container">
+        <div class="container">
+            <div class="text-danger">키워드를 입력하세요.</div>
+            <a href="{% url 'account:login' %}">로그인</a>
+            <a href="{% url 'account:signup' %}">회원가입</a>
+        </div>
+
+        <p></p>
+        <button onclick="location.href='{% url 'dream:create' %}'">글 작성하기</button>
     </div>
 
 
