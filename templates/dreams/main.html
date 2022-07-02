@@ -4,7 +4,7 @@
         <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark bg-opacity-75">
             <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
                 <ul class="navbar-nav">
-                    <li class="nav-item keyword-div"><a href="{% url 'dream:search' %}" class="nav-link bg-light"><div class="text-danger">키워드를 검색해보세요!</div></a></li>
+                    <li class="nav-item keyword-div"><div class="bg-white rounded-5"><a href="{% url 'dream:search' %}" class="nav-link text-black">키워드를 검색해보세요!</a></div></li>
                 </ul>
             </div>
             <div class="navbar-nav mt-mb-0" id="collapsibleNavbar">
@@ -15,20 +15,42 @@
             </div>
         </nav>
     </header>
+
     <div class="main-back" style="position: relative">
             <div class="main-item">
                 <p class="text-light display-6 fw-bold" style="margin-bottom:60px">오늘의 꿈이야기를 작성해보세요</p>
                 <button class="btn btn-light" style=""><a href="{% url 'dream:create' %}" class="fw-bold text-dark text-decoration-none">글 작성하기</a></button>
             </div>
-    <div class="container">
-        <div class="container">
-            <div class="text-danger">키워드를 입력하세요.</div>
-            <a href="{% url 'account:login' %}">로그인</a>
-            <a href="{% url 'account:signup' %}">회원가입</a>
-        </div>
+    </div>
+{#    검색 타이틀#}
 
-        <p></p>
-        <button onclick="location.href='{% url 'dream:create' %}'">글 작성하기</button>
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <p class="display-6 fw-bold m-3">관심있는 꿈을 찾아보세요!</p>
+            <div class="d-inline-block border border-1 border-dark rounded-4" style="width:60%;height: 40px;cursor: pointer">
+                <a href="{% url 'dream:search' %}" style="line-height: 35px" class="text-black text-decoration-none">키워드를 검색해보세요!</a>
+                <div class="search-img"></div>
+            </div>
+        </div>
+    </div></br></br></br></br>
+
+{#    게시물#}
+    <div class="container w-65">
+        <div class="row gx-0 justify-content-center text-center ">
+
+            {% for dream in main %}
+                <div class="col mt-5">
+                    <div class="post-div">
+                        <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: '{{ dream.bg }}'"></div>
+                        <div class="user-name d-inline-flex fw-bold mt-4 float-start">{{ dream.name }}</div>
+                        <div class="post-date position-absolute mt-5 float-start">{{ dream.date }}</div>
+                        <div class="post-title position-absolute fw-bold">{{ dream.title }}</div>
+                        <div class="post-content overflow-hidden">{{ dream.contents}}</div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
     </div>
 
 
