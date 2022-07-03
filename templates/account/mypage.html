@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark bg-opacity-75">
+            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                </ul>
+            </div>
+            <div class="navbar-nav mt-mb-0" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">로그아웃</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="my-list-div"><br><br><br><br><br><br>
+
+{#        프로필#}
+        <div class="container text-center my-profile-div">
+            <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: #ffffff"></div>
+            <div class="float-start mt-4 display-6 text-white fw-bold">DREAMER : </div>
+        </div>
+
+        <br><br>
+
+{#        내가 쓴 게시물#}
+         <div class="container my-list-container">
+             <!-- align-items-center -->
+            <div class="my-list-item">
+                <div class="dream-color" style="background-color: #000000;"></div>
+                <h4 class='fw-bold mx-4 dream-title'>꿈 제목</h4>
+
+                <div class="mx-4 mt-0">날짜</div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
