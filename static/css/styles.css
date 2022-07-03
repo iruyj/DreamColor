@@ -1,0 +1,65 @@
+/* 생성, 수정 화면 */
+.new_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    background-image: url("/static/img/new_bg.png");
+    background-size: cover;
+}
+
+.title{
+    color: white;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.box{
+    width: 50vw;
+    height: auto;
+    background-color: white;
+    display: flex;
+    padding: 30px;
+    border-radius: 30px;
+}
+.box .label-box{
+    list-style: none;
+    margin-right: 30px;
+}
+.box .label-box li{
+    margin-bottom: 12px;
+}
+.box form .dreamname input{
+    width: 100%;
+}
+.textarea{
+}
+.box #date{
+    width: 50%;
+}
+.box .dream-span{
+    width: 100%;
+    /*position: relative;*/
+    /*left: 150px;*/
+    /*text-align: right;*/
+}
+.box .color-input{
+    width: 48%;
+    position: relative;
+    margin-left: 4px;
+    top: 5px;
+    margin-bottom: 10px;
+}
+.box form button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #dbe0ff;
+    font-size: 15px;
+    border: 1px solid antiquewhite;
+    -webkit-text-stroke: 0.7px #1b1f3d;
+    color: white;
+}

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+
 <div class="new_container">
 {#        fields = ['title','date_dream','created','read_cnt','color','contents']#}
 
@@ -7,25 +9,37 @@
     <div class="box">
         <ul class="label-box">
             <li class="label item1">제목</li>
+            <li class="label item2">꿈날</li>
             <li class="label item3">내용</li>
         </ul>
         <form method="post" action="{% url 'dream:create' %}" class="form">
             {% csrf_token %}
             {% include 'form_errors.html' %}
             <div class="put-lines">
-                <input type="text" name="title" id="demo-name" value="" placeholder="제목" />
-                <input type="date"  name="date_dream" id="demo-date" value="" placeholder="꿈날" />
-                <div class="col-12" >
-                    <textarea name="contents" id="contents" placeholder="Enter Your Dreams story.." rows="5" ></textarea>
+                <div class="dreamname">
+                    <input type="text" name="title" id="demo-name" value="" placeholder="제목" />
+                </div>
+                <span class="dream-span">
+                    <input type="date"  name="date_dream" id="date" value="" placeholder="꿈날"  />
+                    <input type="color" class="color-input" name="color" id="color-selection" value="#dbe0ff">
+                </span>
+
+                <div class="textarea" >
+                    <textarea name="contents" id="contents" placeholder="Enter Your Dreams story.. (마크다운 문법이 적용됩니다.)" rows="10" cols="70"></textarea>
                 </div>
 
-                <div class="side-color">
-                    <input type="color" name="color" id="color-selection">
-                </div>
-                <button type="submit">꿈나라로 보내기</button>
+                <button type="submit" id="submit">꿈 이야기 꿈나라로 보내기</button>
             </div>
         </form>
     </div>
+
+    <script>
+        let color= document.getElementById('color-selection')
+        color.addEventListener('change',function (){
+            document.getElementById('submit').style.backgroundColor = color.value
+        })
+
+    </script>
 
 </div>
 {% endblock %}
