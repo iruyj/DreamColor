@@ -29,9 +29,29 @@ def viewDream(request, id):
     okt = Okt()
     keywords = okt.nouns(dream.title)
     # 해당 해몽들 보여주기
-    # 글쓴이인지 판별
+    import urllib.request
+    from bs4 import BeautifulSoup
+
+    print(keywords)
+    urls = []
+    for key in keywords:
+        word = urllib.parse.quote_plus(key+'꿈해몽')
+
+        url = f'https://search.naver.com/search.naver?date_from=&date_option=0&date_to=&dup_remove=1&nso=&post_blogurl=&post_blogurl_without=&query={word}&sm=tab_pge&srchby=all&st=sim&where=post&start=5'
+        html = urllib.request.urlopen(url).read()
+        soup = BeautifulSoup(html, 'html.parser')
+
+        titles = soup.find_all(class_='api_txt_lines total_tit')
+
+        results = []
+        for index, title in enumerate(titles):
+            if index == 3: break
+            results.append((''.join((title.find_all(text=True))),title.attrs['href']))
+            print(''.join((title.find_all(text=True))))
+            print(title.attrs['href'])
+
     isUser = request.user == dream.author
-    return render(request,'dreams/view.html',{'dream':dream, 'isUser':isUser})
+    return render(request,'dreams/view.html',{'dream':dream, 'isUser':isUser, 'results':results})
 
 def mainPage(request):
     dream_list = {'title': '추락하는 꿈', 'date_dream': datetime.date, 'bg': '#F2C4DA', 'contents': '내용ㅇㅇㅇ'

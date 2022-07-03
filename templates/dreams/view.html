@@ -36,6 +36,34 @@
         </div>
     {% endif %}
 
+    <img src="/static/img/question_.png" class="btn-open-popup"/>
+    <div class="modal">
+      <div class="modal_body">
+          {{ dream.title }}의 해몽<br>
+        <ul style="list-style: none; text-align: left">
+            {% for title, link in results %}
+                <li style="margin-top: 5px">
+                    <a href="{{ link }}" class="result-item" >{{ title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+    <script>
+      const modal = document.querySelector('.modal');
+      const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+      document.querySelector('.modal').addEventListener('click',()=>{
+            modal.style.display = 'none';
+            document.querySelector('body').style.overflow = 'auto';
+      })
+      btnOpenPopup.addEventListener('click', () => {
+        modal.style.display = 'block';
+        window.scrollTo(0, 0);
+        document.querySelector('body').style.overflow = 'hidden';
+      });
+    </script>
 
 </div>
 {% endblock %}
