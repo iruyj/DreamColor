@@ -2,7 +2,7 @@
 {% block content %}
 <div class="signup-container">
     <div class="signup-wrap">
-        <a href="" ><h1>회원가입</h1></a>
+        <h1>회원가입</h1>
         <form method="post" enctype='multipart/form-data' class="signup-form" action="{% url 'account:signup' %}">
             {% csrf_token %}
             {% include "form_errors.html" %}
@@ -15,20 +15,28 @@
                 <input type="text" name="nickname" class="input-name" placeholder="사용할 이름을 입력하세요" value="{{ form.nickname.value|default_if_none:'' }}">
             </div>
             <div class="sign-info">
-                <span class="signup-item pw">PW</span>
+                <span class="signup-item pw">비밀번호</span>
                 <input type="password" name="password1" class="input-pw" placeholder="비밀번호를 입력하세요" value="{{ form.password1.value|default_if_none:'' }}">
             </div>
             <div class="sign-info">
                 <span class="signup-item pw-check">PW확인</span>
                 <input type="password" name="password2" class="input-pwchk" placeholder="비밀번호를 한번 더 확인합니다." value="{{ form.password2.value|default_if_none:'' }}">
             </div>
-            <div class="signup-item usercolor" >
-                <input type="color" name="usercolor" class="input-usercolor" placeholder="프로필 색깔을 정해주세요" value="{{ form.usercolor.value|default_if_none:'' }}">
+            <div class="sign-info usercolor" >
+                <span class="signup-item pw-check">프로필 컬러</span>
+                <input type="color" name="usercolor" class="input-usercolor" id="usercolor" placeholder="프로필 색깔을 정해주세요" value="{{ form.usercolor.value|default_if_none:'' }}">
             </div>
             <input type="submit" class="submit" value="가입하기">
         </form>
     </div>
 </div>
+    <script>
+        let color = document.getElementById('usercolor');
+        color.addEventListener('change',()=>{
+            let body = document.querySelector('.signup-container');
+            body.style.backgroundColor = color.value
+        })
+    </script>
 {% endblock %}
 
 

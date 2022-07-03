@@ -6,12 +6,12 @@
         <h1 class="title">{{ dream.title }}</h1>
         <p class="date">{{ dream.date_dream }}</p>
 
-{#        {% if isUser %}#}
+        {% if isUser %}
             <div class="buttons">
                 <a href="" class="edit">수정하기</a>
                 <a href="" class="delete">삭제하기</a>
             </div>
-{#        {% endif %}#}
+        {% endif %}
     </div>
 
     <div class="content">
@@ -28,13 +28,6 @@
             <p class="read">읽음개수 : {{ dream.read_cnt }}개</p>
         </div>
     </div>
-
-    {% if isUser %}
-        <div class="buttons">
-            <a href="" class="edit">수정하기</a>
-            <a href="" class="delete">삭제하기</a>
-        </div>
-    {% endif %}
 
     <img src="/static/img/question_.png" class="btn-open-popup"/>
     <div class="modal">
