@@ -1,23 +1,31 @@
 {% extends 'base.html' %}
+{% load dream_filter %}
 {% block content %}
-<div class="new_container">
-    <div class="header" style="background-color: '{{ dream.color }}">
+<div class="view_container">
+    <div class="header" style="background-color: '{{ dream.color }}'">
         <h1 class="title">{{ dream.title }}</h1>
         <p class="date">{{ dream.date_dream }}</p>
+
+{#        {% if isUser %}#}
+            <div class="buttons">
+                <a href="" class="edit">수정하기</a>
+                <a href="" class="delete">삭제하기</a>
+            </div>
+{#        {% endif %}#}
     </div>
 
     <div class="content">
-        {{ dream.contents }}
+        {{ dream.contents|mark }}
     </div>
 
     <div class="footer">
         <div class="left">
-            <div class="color" style="background-color: '{{ dream.color }}'"></div>
-            <span class="username">{{ dream.name }}</span>
+            <div class="color-profile" style="background-color: '{{ dream.color }}'" ></div>
+            <span class="username">{{ dream.author.nickname }} ({{ dream.color }})</span>
         </div>
 
         <div class="right">
-            <p class="read">{{ dream.read }}</p>
+            <p class="read">읽음개수 : {{ dream.read_cnt }}개</p>
         </div>
     </div>
 
