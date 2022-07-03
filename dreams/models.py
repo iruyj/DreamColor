@@ -14,5 +14,4 @@ class DreamModel(models.Model):
     author = models.ForeignKey(account.models.CustomUser, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
-        db_table = 'dreams_dreammodel'
+        db_table = 'dreammodel'

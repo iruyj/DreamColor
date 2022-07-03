@@ -22,6 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('dream/', include('dreams.urls')),
-    path('',views.mainPage, name='main'),
-    path('search/',include('dreams.urls')),
+    path('', views.mainPage, name='first'),
 ]

@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="new_container">
+{#        fields = ['title','date_dream','created','read_cnt','color','contents']#}
+
     <h1 class="title">DREAM</h1>
     <div class="box">
         <ul class="label-box">
             <li class="label item1">제목</li>
-            <li class="label item2">키워드</li>
             <li class="label item3">내용</li>
         </ul>
-        <form method="post" action="" class="form">
+        <form method="post" action="{% url 'dream:create' %}" class="form">
             {% csrf_token %}
             {% include 'form_errors.html' %}
             <div class="put-lines">
