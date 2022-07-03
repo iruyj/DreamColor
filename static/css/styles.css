@@ -193,3 +193,65 @@
     bottom: 40px;
     right: 50px;
 }
+
+/* 로그인 화면 작성 */
+.login-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(53, 54, 57, 0.53);
+}
+.login-container .login-body{
+    width: 60%;
+    height: 60%;
+    border-radius: 30px;
+    padding: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
+.login-container #login-img{
+    width: 50%;
+    height: 100%;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.login-container .login-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    width: 50%;
+}
+.login-container .login-wrap .login-title {
+    text-decoration: none;
+    color: #3f1fad;
+    font-weight: bolder;
+}
+.login-container .login-wrap form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-top: 30px;
+}
+.login-container .login-wrap input{
+    width: 80%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.login-container .login-wrap button{
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid gray;
+    background-color: #eeecff;
+    width: 80%;
+}

@@ -5,19 +5,21 @@
             alert('아이디와 비번을 확인해주세요')
         </script>
     {% endif %}
-    <div class="sign-container">
-        <div class="sign-wrap">
-            <a href="{% url 'dream:main' %}" class="login-title"><h1>Dream</h1></a>
-            <form method="post" class="login_form" action="{% url 'account:login' %}">
-                {% csrf_token %}
-{#                {% include "form_errors.html" %}#}
-                <input type="text" name="username" id="username" class="input id" placeholder="아이디" value="{{ form.username.value|default_if_none:'' }}">
-                <input type="password" name="password" id="password" class="input pw" placeholder="비밀번호" value="{{ form.password.value|default_if_none:'' }}">
-                <ul class="sign-box">
-                    <li class="sign-btn"><button type="submit" class="sign submit">로그인</button></li>
-                    <li class="sign-btn"><a href="{% url 'account:signup' %}" class="sign sign-up">회원가입</a><li class="sign-btn">
-                </ul>
-            </form>
+
+    <div class="login-container">
+        <div class="login-body">
+            <img src="/static/img/login_img.png" id='login-img' alt="로그인이미지">
+            <div class="login-wrap">
+                <a href="{% url 'dream:main' %}" class="login-title"><h1>DreamColor</h1></a>
+                <form method="post" class="login_form" action="{% url 'account:login' %}">
+                    {% csrf_token %}
+                    {% include "form_errors.html" %}
+                    <input type="text" name="username" id="username" class="input id" placeholder="아이디를 입력하세요" value="{{ form.username.value|default_if_none:'' }}">
+                    <input type="password" name="password" id="password" class="input pw" placeholder="비밀번호를 입력하세요" value="{{ form.password.value|default_if_none:'' }}">
+                    <button type="submit" class="login submit">로그인</button>
+
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

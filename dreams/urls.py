@@ -9,5 +9,5 @@ urlpatterns = [
     path('create/', views.createDream, name='create' ),
     path('', views.mainPage, name='main'),
     path('search', views.findKey, name='search'),
-    path('<int:id>', views.viewDream, name='search'),
+    path('<int:id>', views.viewDream, name='detail'),
 ]
