@@ -24,7 +24,7 @@
             </div>
             <div class="sign-info usercolor" >
                 <span class="signup-item pw-check">프로필 컬러</span>
-                <input type="color" name="usercolor" class="input-usercolor" id="usercolor" placeholder="프로필 색깔을 정해주세요" value="{{ form.usercolor.value|default_if_none:'' }}">
+                <input type="color" name="usercolor" class="input-usercolor" id="usercolor" placeholder="프로필 색깔을 정해주세요" value="{{ form.usercolor.value|default_if_none:'#220747' }}">
             </div>
             <input type="submit" class="submit" value="가입하기">
         </form>

@@ -287,6 +287,7 @@
 }
 .signup-container .signup-wrap h1{
     font-size: 28px;
+    color: #2c1990;
 }
 
 .signup-container .signup-wrap form{
@@ -316,7 +317,7 @@
 
 .signup-container .signup-wrap form .submit{
     margin-top: 15px;
-    background-color: #7700ee;
+    background-color: #2c1990;
     color: white;
     border: 1px solid gray;
 }

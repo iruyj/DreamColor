@@ -38,9 +38,5 @@ def login(request):
         form = LoginForm()
         return render(request, 'account/login.html',{'form':form,'state':'true'})
 
-def logout(request):
-    logout(request)
-    return redirect('/')
-
 def mypage(request):
     return render(request, 'account/mypage.html')

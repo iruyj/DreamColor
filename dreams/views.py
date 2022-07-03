@@ -46,8 +46,8 @@ def viewDream(request, id):
         for index, title in enumerate(titles):
             if index == 3: break
             results.append((''.join((title.find_all(text=True))),title.attrs['href']))
-            print(''.join((title.find_all(text=True))))
-            print(title.attrs['href'])
+            # print(''.join((title.find_all(text=True))))
+            # print(title.attrs['href'])
 
     if len(results)==0:
         results.append(('제목에 해당하는 해몽을 찾지 못했습니다.',''))
