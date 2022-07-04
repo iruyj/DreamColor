@@ -1,3 +1,4 @@
+import form as form
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.shortcuts import render, redirect
@@ -5,6 +6,10 @@ from account.forms import UserForm, LoginForm
 
 
 # Create your views here.
+from account.models import CustomUser
+from dreams.models import DreamModel
+
+
 def signup(request):
     # 계정 생성
     if request.method == "POST":
@@ -39,4 +44,12 @@ def login(request):
         return render(request, 'account/login.html',{'form':form,'state':'true'})
 
 def mypage(request):
-    return render(request, 'account/mypage.html')
+
+    # cur_user = request.user
+
+    if request.user.is_authenticated:
+        user = CustomUser.objects.get(id=request.user.id)
+        dream = DreamModel.objects.filter(author=request.user.id)
+        return render(request, 'account/mypage.html', {'user': user, 'dreams': dream})
+    else:
+        return render(request, 'account/login.html')

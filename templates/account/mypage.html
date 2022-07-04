@@ -20,6 +20,7 @@
         <div class="container text-center my-profile-div">
             <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: #ffffff"></div>
             <div class="float-start mt-4 display-6 text-white fw-bold">DREAMER : </div>
+            <div class="float-start mt-4 display-5 text-white fw-bolder mx-1">{{ user.nickname }}</div>
         </div>
 
         <br><br>
@@ -27,12 +28,14 @@
 {#        내가 쓴 게시물#}
          <div class="container my-list-container">
              <!-- align-items-center -->
-            <div class="my-list-item">
-                <div class="dream-color" style="background-color: #000000;"></div>
-                <h4 class='fw-bold mx-4 dream-title'>꿈 제목</h4>
+             {% for dream in dreams%}
+                <a href={% url 'dream:detail' id=dream.id %} class="my-list-item">
+                    <div class="dream-color" style="background-color: {{dream.color}};"></div>
+                    <h4 class='fw-bold mx-4 dream-title'>{{ dream.title}}</h4>
 
-                <div class="mx-4 mt-0">날짜</div>
-            </div>
+                    <div class="mx-4 mt-0">{{ dream.date_dream }}</div>
+                </a>
+             {% endfor %}
         </div>
     </div>
 
