@@ -50,6 +50,7 @@
 }
 .post-content{
     /*position: absolute;*/
+    overflow: hidden;
     margin-top: 130px;
     margin-left: 30px;
     text-align: left;

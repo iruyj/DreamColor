@@ -1,18 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark bg-opacity-75">
-            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                </ul>
-            </div>
-            <div class="navbar-nav mt-mb-0" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">로그아웃</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
     <div class="my-list-div"><br><br><br><br><br><br>
 
@@ -29,7 +16,7 @@
          <div class="container my-list-container">
              <!-- align-items-center -->
              {% for dream in dreams%}
-                <a href={% url 'dream:detail' id=dream.id %} class="my-list-item">
+                <a class="my-list-item text-decoration-none text-black bg-white" href={% url 'dream:detail' id=dream.id %} >
                     <div class="dream-color" style="background-color: {{dream.color}};"></div>
                     <h4 class='fw-bold mx-4 dream-title'>{{ dream.title}}</h4>
 

@@ -10,13 +10,14 @@
     /*border: 1px solid white;*/
 }
 .my-list-container{
+    overflow-y: scroll;
     width: 60% !important;
     height: 500px;
     /*border: 1px solid white;*/
 }
 .my-list-item{
     /*text-align: center;*/
-    /*width: 70%!important;*/
+    width: 100%!important;
     cursor: pointer;
     height: 100px;
     display: inline-block;
