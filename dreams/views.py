@@ -1,12 +1,12 @@
 import datetime
 
+from pyexpat.errors import messages
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from dreams.forms import DreamForm
 from dreams.models import DreamModel
 from account.models import CustomUser
-
 
 def createDream(request):
     if request.method == 'POST':
@@ -64,3 +64,31 @@ def mainPage(request):
 
 def findKey(request):
     return render(request, 'dreams/search.html')
+
+# 수정하기
+def modify(request,id):
+    dream = get_object_or_404(DreamModel,pk=id)
+    if request.user != dream.author:
+        messages.error(request, '수정권한이 없습니다.')
+        return redirect(request,'dream:')
+
+    if request.method == "POST":
+        form = DreamForm(request.POST, instance=dream)
+        if form.is_valid():
+            movie = form.save(commit=False)
+            movie.save()
+            return redirect('dream:detail', id=dream.id)
+    else:
+        form = DreamForm(instance=dream)
+    context = {'form': form,'dream':dream}
+    return render(request, 'dreams/modify.html', context)
+
+
+# 삭제하기
+def delete(request,id):
+    dream = get_object_or_404(DreamModel,id)
+    if request.user != dream.author:
+        messages.error(request, "삭제권한이 없습니다.")
+    else:
+        dream.delete()
+    return redirect('dream:main')

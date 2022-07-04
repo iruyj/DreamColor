@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="new_container">
+{#        fields = ['title','date_dream','created','read_cnt','color','contents']#}
+    <h1 class="title">DREAM</h1>
+    <div class="box">
+        <ul class="label-box">
+            <li class="label item1">제목</li>
+            <li class="label item2">꿈날</li>
+            <li class="label item3">내용</li>
+        </ul>
+        <form method="post" action="{% url 'dream:modify' id=dream.id %}" class="form">
+            {% csrf_token %}
+            {% include 'form_errors.html' %}
+            <div class="put-lines">
+                <div class="dreamname">
+                    <input type="text" name="title" id="demo-name" value="{{ dream.title }}" placeholder="제목" />
+                </div>
+                <span class="dream-span">
+                    <input type="date"  name="date_dream" id="date" value="{{ dream.date_dream| date:'Y-m-d'  }}" placeholder="꿈날"  />
+                    <input type="color" class="color-input" name="color" id="color-selection" value="{{ dream.color }}">
+                </span>
+
+                <div class="textarea" >
+                    <textarea name="contents" id="contents" placeholder="Enter Your Dreams story.. (마크다운 문법이 적용됩니다.)" rows="10" cols="70">{{ dream.contents }}</textarea>
+                </div>
+
+                <button type="submit" id="submit">꿈 이야기 꿈나라로 보내기</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let color= document.getElementById('color-selection')
+        color.addEventListener('change',function (){
+            document.getElementById('submit').style.backgroundColor = color.value
+        })
+
+    </script>
+
+</div>
+{% endblock %}
