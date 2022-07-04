@@ -9,7 +9,7 @@
         {% if isUser %}
             <div class="buttons">
                 <a href="{% url 'dream:modify' id=dream.id %}" class="edit">수정하기</a>
-                <a href="" class="delete">삭제하기</a>
+                <a href="{% url 'dream:delete' id=dream.id %}" class="delete">삭제하기</a>
             </div>
         {% endif %}
     </div>
