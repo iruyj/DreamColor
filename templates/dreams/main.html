@@ -23,7 +23,7 @@
     <div class="container w-65">
         <div class="row gx-0 justify-content-center text-center ">
             {% for dream in dream_list %}
-                <a href='' class="text-decoration-none text-black"><div class="col mt-5">
+                <a href={% url 'dream:detail' id=dream.id %} class="text-decoration-none text-black"><div class="col mt-5">
                     <div class="post-div">
                         <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{ dream.color }}"></div>
                         <div class="user-name d-inline-flex fw-bold mt-4 float-start">{{ dream.author }}</div>
