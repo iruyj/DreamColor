@@ -84,4 +84,9 @@ def modify(request,id):
 
 # 삭제하기
 def delete(request,id):
-    return None
+    dream = get_object_or_404(DreamModel,id)
+    if request.user != dream.author:
+        messages.error(request, "삭제권한이 없습니다.")
+    else:
+        dream.delete()
+    return redirect('dream:main')
