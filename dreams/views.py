@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from dreams.forms import DreamForm
 from dreams.models import DreamModel
+from account.models import CustomUser
 
 
 def createDream(request):
@@ -25,6 +26,7 @@ def viewDream(request, id):
     # dream 게시물 가져오기
     dream = get_object_or_404(DreamModel,id=id)
     # 제목 키워드 분석
+
     from konlpy.tag import Okt
     okt = Okt()
     keywords = okt.nouns(dream.title)
@@ -56,9 +58,9 @@ def viewDream(request, id):
     return render(request,'dreams/view.html',{'dream':dream, 'isUser':isUser, 'results':results})
 
 def mainPage(request):
-    dream_list = {'title': '추락하는 꿈', 'date_dream': datetime.date, 'bg': '#F2C4DA', 'contents': '내용ㅇㅇㅇ'
-        , 'author': 'ㅇㄹㅇㄴ', 'read': 21}
-    return render(request, 'dreams/main.html',{'dream':dream_list})
+    # dream 전체 게시물 가져오기
+    dream = DreamModel.objects.all()
+    return render(request, 'dreams/main.html',{'dream_list':dream})
 
 def findKey(request):
     return render(request, 'dreams/search.html')
