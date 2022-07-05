@@ -1,6 +1,9 @@
+import random
+
 import form as form
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.db.models import Max
 from django.shortcuts import render, redirect
 from account.forms import UserForm, LoginForm
 
@@ -50,6 +53,21 @@ def mypage(request):
     if request.user.is_authenticated:
         user = CustomUser.objects.get(id=request.user.id)
         dream = DreamModel.objects.filter(author=request.user.id)
-        return render(request, 'account/mypage.html', {'user': user, 'dreams': dream})
+
+        # 랜덤 정보 생성 함수 호출
+        dreams = get_random_dreams()
+        random_dreams = DreamModel.objects.filter(id__in=dreams)
+        return render(request, 'account/mypage.html', {'user': user, 'dreams': dream, 'random':random_dreams})
     else:
         return render(request, 'account/login.html')
+
+def get_random_dreams():
+    max_id = DreamModel.objects.all().aggregate(max_id = Max("id"))['max_id']
+    list = []
+    ran_num = random.randint(1, max_id)
+    for i in range(5):
+        while ran_num in list:
+            ran_num = random.randint(1,max_id)
+        list.append(ran_num)
+    list.sort()
+    return list
