@@ -10,10 +10,11 @@
                 <ul class="navbar-nav" style="margin-right: 20px">
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">로그아웃</a></li>
+                    <li class="nav-item"><a href="{% url 'account:mypage' %}" class="nav-link">마이페이지</a></li>
                     {% else %}
                     <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">로그인</a></li>
-                    {% endif %}
                     <li class="nav-item"><a href="{% url 'account:signup' %}" class="nav-link">회원가입</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
