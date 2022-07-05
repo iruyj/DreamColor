@@ -26,23 +26,26 @@
     </div>
 
 {#    추천 게시물#}
-    <div class="container w-100">
-        <p>추천 목록</p>
-        <hr>
-        <div class="for_slick_slider responsive">
-            {% for dream in random %}
-                <div class="items">
-                    <a class="text-decoration-none text-black mx-2 d-inline-block" href={% url 'dream:detail' id=dream.id %} >
-                        <div class="post-div">
-                            <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{ dream.color }}"></div>
-                            <div class="user-name d-inline-flex fw-bold mt-4 float-start">{{ dream.author }}</div>
-                            <div class="post-date position-absolute mt-5 float-start">{{ dream.date_dream }}</div>
-                            <div class="post-title position-absolute fw-bold">{{ dream.title }}</div>
-                            <div class="post-content overflow-hidden">{{ dream.contents}}</div>
-                        </div>
-                   </a>
-                </div>
-            {% endfor %}
-        </div>
+    <div class="w-100" style="background-color: #060D26">
+        <div class="container w-100" >
+            <p class="text-white display-6 fw-bold">추천 목록</p>
+            <hr>
+            <div class="for_slick_slider responsive">
+                {% for dream in random %}
+                    <div class="items">
+                        <a class="text-decoration-none text-black mx-2 d-inline-block" href={% url 'dream:detail' id=dream.id %} >
+                            <div class="post-div bg-white">
+                                <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{ dream.color }}"></div>
+                                <div class="user-name d-inline-flex fw-bold mt-4 float-start">{{ dream.author }}</div>
+                                <div class="post-date position-absolute mt-5 float-start">{{ dream.date_dream }}</div>
+                                <div class="post-title position-absolute fw-bold">{{ dream.title }}</div>
+                                <div class="post-content overflow-hidden">{{ dream.contents}}</div>
+                            </div>
+                       </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div><br><br><br><br><br>
     </div>
+
 {% endblock %}
