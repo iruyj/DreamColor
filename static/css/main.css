@@ -4,8 +4,8 @@
     text-align: center;
 }
 .main-back{
-    background: url("/static/img/main_back.png") no-repeat;
-    background-size: contain;
+    background: url("/static/img/main_back.png");
+    background-size: cover;
     width: auto;
     height: 1000px;
 }
