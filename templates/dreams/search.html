@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-    <a href={% url 'dream:main' %}><div class="back-img float-start mt-4 mx-4"></div></a>
-    <br><br><br><br>
+{#    <a href={% url 'dream:main' %}><div class="back-img float-start mt-4 mx-4"></div></a>#}
+    <br><br><br><br><br><br><br><br>
     <div class="container text-center">
-        <input class="d-inline-block border border-1 border-dark rounded-4 text-center" placeholder="검색어를 입력하세요!" style="width:60%;height: 40px;cursor: pointer;"></input>
+        <form action="{% url 'dream:title' %}" class="searchForm">
+            {% csrf_token %}
+            <input name="search_word" class="d-inline-block border border-1 border-dark rounded-2 text-center" placeholder="검색어를 입력하세요!" value="{{ search_term|default_if_none:'' }}" style="width:60%;height: 40px;cursor: pointer;">
+            <input type="submit" value="검색" class="btn btn-success">
+        </form>
         <br><br><br>
 
-        <h3 class="fw-bold">최근 검색어</h3>
-        <div class="recent-div"></div>
-        <h3 class="fw-bold">인기 색상</h3>
-        <div class="best-div"></div>
+        <h3 class="fw-bold">인기 색상</h3><br><br>
+
+        <div class="container best-div">
+            {% for color in colors %}
+                <a href={% url 'dream:color' color_id=color %}><button class="btn btn-light" type="submit" value="{{ color }}"><div class="user-color rounded-5 d-inline-flex" style="background-color: {{ color }}"></div></button></a>
+            {% endfor %}
+            <br><br><p>*색상 클릭 시 해당 색상의 게시물이 보여집니다.</p>
+        </div>
 
     </div>
 {% endblock %}

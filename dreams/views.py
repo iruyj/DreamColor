@@ -1,11 +1,18 @@
+import cgi
 import datetime
+from collections import Counter
 
 from pyexpat.errors import messages
+
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
+from django.views.generic import FormView
+
 from dreams.forms import DreamForm
 from dreams.models import DreamModel
+from account.models import CustomUser
 
 def createDream(request):
     if request.method == 'POST':
@@ -24,7 +31,9 @@ def createDream(request):
 def viewDream(request, id):
     # dream 게시물 가져오기
     dream = get_object_or_404(DreamModel,id=id)
+    print(dream.color)
     # 제목 키워드 분석
+
     from konlpy.tag import Okt
     okt = Okt()
     keywords = okt.nouns(dream.title)
@@ -56,12 +65,37 @@ def viewDream(request, id):
     return render(request,'dreams/view.html',{'dream':dream, 'isUser':isUser, 'results':results})
 
 def mainPage(request):
-    dream_list = {'title': '추락하는 꿈', 'date_dream': datetime.date, 'bg': '#F2C4DA', 'contents': '내용ㅇㅇㅇ'
-        , 'author': 'ㅇㄹㅇㄴ', 'read': 21}
-    return render(request, 'dreams/main.html',{'dream':dream_list})
+    # dream 전체 게시물 가져오기
+    dream = DreamModel.objects.all()
+    return render(request, 'dreams/main.html',{'dream_list':dream})
 
-def findKey(request):
-    return render(request, 'dreams/search.html')
+
+def search(request):
+    datas = DreamModel.objects.values_list('color', flat=True)
+    counter = dict(Counter(datas))
+    sorted_color = sorted(counter, key=lambda x: x[1], reverse=True)[:5]
+    context = {}
+    context['colors'] = sorted_color
+    return render(request, 'dreams/search.html', context)
+
+def search_color(request, color_id):
+    dream_list = DreamModel.objects.filter(color__contains=color_id)
+    context = {'dream_list':dream_list}
+    return render(request, 'dreams/main.html',context)
+
+
+def search_title(request):
+    context = {}
+    # 검색
+    search_word = request.GET.get('search_word','')
+    print(search_word)
+    print(search)
+
+    dream_list = DreamModel.objects.filter(title__contains=search_word)
+    context['dream_list'] = dream_list
+
+    return render(request, 'dreams/main.html', {'dream_list':dream_list})
+
 
 # 수정하기
 def modify(request,id):

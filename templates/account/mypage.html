@@ -1,25 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark bg-opacity-75">
-            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                </ul>
-            </div>
-            <div class="navbar-nav mt-mb-0" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">로그아웃</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
     <div class="my-list-div"><br><br><br><br><br><br>
 
 {#        프로필#}
         <div class="container text-center my-profile-div">
-            <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: #ffffff"></div>
+            <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{user.usercolor}}"></div>
             <div class="float-start mt-4 display-6 text-white fw-bold">DREAMER : </div>
+            <div class="float-start mt-4 display-5 text-white fw-bolder mx-1">{{ user.nickname }}</div>
         </div>
 
         <br><br>
@@ -27,13 +15,37 @@
 {#        내가 쓴 게시물#}
          <div class="container my-list-container">
              <!-- align-items-center -->
-            <div class="my-list-item">
-                <div class="dream-color" style="background-color: #000000;"></div>
-                <h4 class='fw-bold mx-4 dream-title'>꿈 제목</h4>
-
-                <div class="mx-4 mt-0">날짜</div>
-            </div>
+             {% for dream in dreams%}
+                <a class="my-list-item text-decoration-none text-black bg-white" href={% url 'dream:detail' id=dream.id %} >
+                    <div class="dream-color" style="background-color: {{dream.color}};"></div>
+                    <h4 class='fw-bold mx-4 dream-title'>{{ dream.title}}</h4>
+                    <div class="mx-4 mt-0">{{ dream.date_dream }}</div>
+                </a>
+             {% endfor %}
         </div>
+    </div>
+
+{#    추천 게시물#}
+    <div class="w-100" style="background-color: #060D26">
+        <div class="container w-100" >
+            <p class="text-white display-6 fw-bold">추천 목록</p>
+            <hr>
+            <div class="for_slick_slider responsive">
+                {% for dream in random %}
+                    <div class="items">
+                        <a class="text-decoration-none text-black mx-2 d-inline-block" href={% url 'dream:detail' id=dream.id %} >
+                            <div class="post-div bg-white">
+                                <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{ dream.color }}"></div>
+                                <div class="user-name d-inline-flex fw-bold mt-4 float-start">{{ dream.author }}</div>
+                                <div class="post-date position-absolute mt-5 float-start">{{ dream.date_dream }}</div>
+                                <div class="post-title position-absolute fw-bold">{{ dream.title }}</div>
+                                <div class="post-content overflow-hidden">{{ dream.contents}}</div>
+                            </div>
+                       </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div><br><br><br><br><br>
     </div>
 
 {% endblock %}
