@@ -8,12 +8,13 @@ from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView
 
 from dreams.forms import DreamForm
 from dreams.models import DreamModel
 from account.models import CustomUser
-
+@csrf_exempt
 def createDream(request):
     if request.method == 'POST':
         form = DreamForm(request.POST)
@@ -42,9 +43,11 @@ def viewDream(request, id):
     from bs4 import BeautifulSoup
 
     results =[]
-    for key in keywords:
+    # 꿈 단어 제외하고 검색결과 가져오기
+    for key in keywords[:-1]:
         word = urllib.parse.quote_plus(key+'꿈해몽')
 
+        print(word)
         url = f'https://search.naver.com/search.naver?date_from=&date_option=0&date_to=&dup_remove=1&nso=&post_blogurl=&post_blogurl_without=&query={word}&sm=tab_pge&srchby=all&st=sim&where=post&start=5'
         html = urllib.request.urlopen(url).read()
         soup = BeautifulSoup(html, 'html.parser')
@@ -53,7 +56,7 @@ def viewDream(request, id):
 
         results = []
         for index, title in enumerate(titles):
-            if index == 3: break
+            if index == 6: break
             results.append((''.join((title.find_all(text=True))),title.attrs['href']))
             # print(''.join((title.find_all(text=True))))
             # print(title.attrs['href'])
@@ -118,9 +121,7 @@ def modify(request,id):
 
 # 삭제하기
 def delete(request,id):
-    dream = get_object_or_404(DreamModel,id)
-    if request.user != dream.author:
-        messages.error(request, "삭제권한이 없습니다.")
-    else:
-        dream.delete()
+    print(id)
+    dream = get_object_or_404(DreamModel,pk=id)
+    dream.delete()
     return redirect('dream:main')

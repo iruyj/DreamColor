@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% block content %}
 
+{% block content %}
+    {% include 'nav.html' %}
     <div class="main-back" style="position: relative">
             <div class="main-item">
                 <p class="text-light display-6 fw-bold" style="margin-bottom:60px">오늘의 꿈이야기를 작성해보세요</p>
@@ -25,7 +26,7 @@
             {% for dream in dream_list %}
                 <a class="text-decoration-none text-black col mt-5 d-inline-block mx-2" href={% url 'dream:detail' id=dream.id %} >
                     <div class="post-div">
-                        <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{ dream.color }}"></div>
+                        <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start border" style="background-color: {{ dream.color }}"></div>
                         <div class="user-name d-inline-flex fw-bold mt-4 float-start">{{ dream.author }}</div>
                         <div class="post-date position-absolute mt-5 float-start">{{ dream.date_dream }}</div>
                         <div class="post-title position-absolute fw-bold">{{ dream.title }}</div>

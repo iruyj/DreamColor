@@ -19,8 +19,10 @@
     <script src={% static 'js/custom.js' %}></script>
 </head>
 <body>
-    {% include 'nav.html' %}
+    <a href="{% url 'dream:main' %}" style="margin-left: 20px; text-decoration: none" class="logo-main">DreamColor</a>
+
     {% block content %}
+
     {% endblock %}
 </body>
 </html>

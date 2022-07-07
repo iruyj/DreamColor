@@ -2,7 +2,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.db.models import Q
 from django.views.generic import FormView
-from form import form
 
 from dreams.models import DreamModel
 

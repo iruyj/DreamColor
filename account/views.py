@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.db.models import Max
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+
 from account.forms import UserForm, LoginForm
 
 
@@ -12,7 +14,7 @@ from account.forms import UserForm, LoginForm
 from account.models import CustomUser
 from dreams.models import DreamModel
 
-
+@csrf_exempt
 def signup(request):
     # 계정 생성
     if request.method == "POST":
