@@ -19,7 +19,7 @@
     </div>
 
     <div class="footer">
-        <div class="left">
+        <div class="left" onclick="location.href='{% url 'account:mypage' userid=dream.author.username %}'" style="cursor: pointer">
             <div class="color-profile" style="background-color: {{ dream.color }}" ></div>
             <span class="username">{{ dream.author.nickname }} ({{ dream.color }})</span>
         </div>

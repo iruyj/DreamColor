@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-
+    {% if not user.is_authenticated %}
+        <script type="text/javascript">
+            alert("로그인 후 이용 가능합니다.");
+            window.location.href="{% url 'account:login' %}";
+        </script>
+    {% endif %}
     <div class="my-list-div"><br><br><br><br><br><br>
 
 {#        프로필#}
         <div class="container text-center my-profile-div">
             <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{user.usercolor}}"></div>
             <div class="float-start mt-4 display-6 text-white fw-bold">DREAMER : </div>
-            <div class="float-start mt-4 display-5 text-white fw-bolder mx-1">{{ user.nickname }}</div>
+            <div class="float-start mt-4 display-5 text-white fw-bolder mx-3">{{ user.nickname }}</div>
         </div>
 
         <br><br>

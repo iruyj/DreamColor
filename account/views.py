@@ -48,13 +48,12 @@ def login(request):
         form = LoginForm()
         return render(request, 'account/login.html',{'form':form,'state':'true'})
 
-def mypage(request):
+def mypage(request, userid):
 
     # cur_user = request.user
-
     if request.user.is_authenticated:
-        user = CustomUser.objects.get(id=request.user.id)
-        dream = DreamModel.objects.filter(author=request.user.id)
+        user = CustomUser.objects.get(username=userid)
+        dream = DreamModel.objects.filter(author=user)
 
         # 랜덤 정보 생성 함수 호출
         dreams = get_random_dreams()

@@ -14,7 +14,7 @@
 
         <div class="container best-div">
             {% for color in colors %}
-                <a href={% url 'dream:color' color_id=color %}><button class="btn btn-light" type="submit" value="{{ color }}"><div class="user-color rounded-5 d-inline-flex" style="background-color: {{ color }}"></div></button></a>
+                <a href={% url 'dream:color' color_id=color %}><button class="btn btn-light" type="submit" value="{{ color }}"><div class="user-color rounded-5 d-inline-flex border" style="background-color: {{ color }}"></div></button></a>
             {% endfor %}
             <br><br><p>*색상 클릭 시 해당 색상의 게시물이 보여집니다.</p>
         </div>
