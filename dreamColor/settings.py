@@ -20,13 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#0g!yx8g9uta_7svt2d(q)1_9!%k6w&5ioac(n=76$0^#cl^eb'
-
+# SECRET_KEY = 'django-insecure-#0g!yx8g9uta_7svt2d(q)1_9!%k6w&5ioac(n=76$0^#cl^eb'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = False
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+SITE_ID=1
 
 # Application definition
 
@@ -43,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,6 +81,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -131,10 +133,16 @@ AUTH_USER_MODEL = 'account.CustomUser'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 SASS_PROCESSOR_ENABLED = True
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,  'static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [  # 디렉터리 추가
-    BASE_DIR / 'static',
+# Static files(images, .css, .js)
+STATIC_URL = '/static/'  #static 파일을 제공할 url
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  #static 파일 모을 폴더
+STATICFILES_DIRS = [  #프로젝트 전반에 사용할 static 파일
+    os.path.join(BASE_DIR, 'static'),
 ]
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# MEDIA
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')#업로드한 파일 위치
+
