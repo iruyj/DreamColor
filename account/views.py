@@ -66,7 +66,7 @@ def get_random_dreams():
     max_id = DreamModel.objects.all().aggregate(max_id = Max("id"))['max_id']
     list = []
     ran_num = random.randint(1, max_id)
-    for i in range(5):
+    for i in range(6):
         while ran_num in list:
             ran_num = random.randint(1,max_id)
         list.append(ran_num)

@@ -19,7 +19,7 @@
     <script src={% static 'js/custom.js' %}></script>
 </head>
 <body>
-    <a href="{% url 'dream:main' %}" style="margin-left: 20px; text-decoration: none" class="logo-main">DreamColor</a>
+    {% include 'nav.html' %}
 
     {% block content %}
 

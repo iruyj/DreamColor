@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+    {% include 'nav.html' %}
     {% if not user.is_authenticated %}
         <script type="text/javascript">
             alert("로그인 후 이용 가능합니다.");
             window.location.href="{% url 'account:login' %}";
         </script>
     {% endif %}
+
     <div class="my-list-div"><br><br><br><br><br><br>
 
 {#        프로필#}
@@ -43,7 +45,7 @@
                                 <div class="user-color mx-4 mt-4 rounded-5 d-inline-flex float-start" style="background-color: {{ dream.color }}"></div>
                                 <div class="user-name d-inline-flex fw-bold mt-4 float-start">{{ dream.author }}</div>
                                 <div class="post-date position-absolute mt-5 float-start">{{ dream.date_dream }}</div>
-                                <div class="post-title position-absolute fw-bold">{{ dream.title }}</div>
+                                <div class="post-title position-absolute fw-bold overflow-hidden">{{ dream.title }}</div>
                                 <div class="post-content overflow-hidden">{{ dream.contents}}</div>
                             </div>
                        </a>
