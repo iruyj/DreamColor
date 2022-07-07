@@ -132,19 +132,21 @@ LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'account.CustomUser'
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-SASS_PROCESSOR_ENABLED = True
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,  'static')
-# Static files(images, .css, .js)
-STATIC_URL = '/static/'  #static 파일을 제공할 url
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  #static 파일 모을 폴더
-STATICFILES_DIRS = [  #프로젝트 전반에 사용할 static 파일
-    os.path.join(BASE_DIR, 'static'),
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #static 파일 모을 폴더
+STATICFILES_DIRS = [    #프로젝트 전체에 사용할 static 파일 폴더
+    os.path.join(BASE_DIR, 'static')
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# MEDIA
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# MEDIA(사용자가 업로드한 파일)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')#업로드한 파일 위치
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')  #업로드한 파일 위치
 
