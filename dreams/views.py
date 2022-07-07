@@ -32,7 +32,6 @@ def createDream(request):
 def viewDream(request, id):
     # dream 게시물 가져오기
     dream = get_object_or_404(DreamModel,id=id)
-    print(dream.color)
     # 제목 키워드 분석
 
     from konlpy.tag import Okt
@@ -47,7 +46,6 @@ def viewDream(request, id):
     for key in keywords[:-1]:
         word = urllib.parse.quote_plus(key+'꿈해몽')
 
-        print(word)
         url = f'https://search.naver.com/search.naver?date_from=&date_option=0&date_to=&dup_remove=1&nso=&post_blogurl=&post_blogurl_without=&query={word}&sm=tab_pge&srchby=all&st=sim&where=post&start=5'
         html = urllib.request.urlopen(url).read()
         soup = BeautifulSoup(html, 'html.parser')
@@ -91,8 +89,6 @@ def search_title(request):
     context = {}
     # 검색
     search_word = request.GET.get('search_word','')
-    print(search_word)
-    print(search)
 
     dream_list = DreamModel.objects.filter(title__contains=search_word)
     context['dream_list'] = dream_list
@@ -118,10 +114,15 @@ def modify(request,id):
     context = {'form': form,'dream':dream}
     return render(request, 'dreams/modify.html', context)
 
+# 카운트 업데이트
+def read_count(request,id):
+    dream = get_object_or_404(DreamModel,pk=id)
+    dream.read_cnt = dream.read_cnt+1
+    dream.save()
+    return redirect('dream:detail',id=dream.id)
 
 # 삭제하기
 def delete(request,id):
-    print(id)
     dream = get_object_or_404(DreamModel,pk=id)
     dream.delete()
     return redirect('dream:main')
