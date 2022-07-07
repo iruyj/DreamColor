@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECRET_KEY = 'django-insecure-#0g!yx8g9uta_7svt2d(q)1_9!%k6w&5ioac(n=76$0^#cl^eb'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 SITE_ID=1
+
 
 # Application definition
 
@@ -129,23 +131,23 @@ LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'account.CustomUser'
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-SASS_PROCESSOR_ENABLED = True
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,  'static')
-# Static files(images, .css, .js)
-STATIC_URL = '/static/'  #static 파일을 제공할 url
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  #static 파일 모을 폴더
-STATICFILES_DIRS = [  #프로젝트 전반에 사용할 static 파일
-    os.path.join(BASE_DIR, 'static'),
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #static 파일 모을 폴더
+STATICFILES_DIRS = [    #프로젝트 전체에 사용할 static 파일 폴더
+    os.path.join(BASE_DIR, 'static')
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# MEDIA
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# MEDIA(사용자가 업로드한 파일)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#업로드한 파일 위치
 
-import dj_database_url
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)

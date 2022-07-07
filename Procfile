@@ -1,1 +1,1 @@
-web: gunicorn dreamColor.wsgi
+web: gunicorn dreamColor.wsgi --log-file -
