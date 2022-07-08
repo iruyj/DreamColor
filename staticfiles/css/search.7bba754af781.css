@@ -1,0 +1,18 @@
+.back-img{
+    width: 36px;
+    height: 24px;
+    background: url("/static/img/Arrow.35fd2d9ccd20.png");
+}
+.recent-div{
+    width: 50%!important;
+    height: 20%;
+    border: 1px solid black;
+    text-align: center;
+    margin-left: 320px;
+}
+.best-div{
+    width: 50%!important;
+    height: 20%;
+    text-align: center;
+    margin-left: 320px;
+}
