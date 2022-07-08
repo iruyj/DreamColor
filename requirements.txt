@@ -17,3 +17,4 @@ sqlparse==0.4.2
 tzdata==2022.1
 whitenoise==6.2.0
 zipp==3.8.0
+
