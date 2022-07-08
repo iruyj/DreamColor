@@ -27,10 +27,6 @@ urlpatterns = [
     path('', views.mainPage, name='first'),
 ]
 if settings.DEBUG:
-    # static이라는 것을 가져와서 사용할 것인데,
-    # 정적 파일들의 url을 관리하는 함수
-    # 기본적으로 접근할 URL, 그곳으로 접근 시 media 파일의 경로는 어디인지를 넣어줌
-    # 자동으로 접속한 url에 대한 파일을 가져와 보여줄 것
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 CSRF_TRUSTED_ORIGINS = ["https://moviewproject.herokuapp.com"]
